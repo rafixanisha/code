@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1769ff">
+  <title>DView — Discover & Share</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="shade" id="shade"></div>
+
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="#" data-page="Home">
+      <span class="brand-mark">A</span><span>ANI TOON</span>
+    </a>
+    <p class="nav-label">MENU</p>
+    <nav class="side-nav">
+      <button class="nav-item active" data-page="Home">⌂ Home</button>
+      <button class="nav-item" data-page="All List">☷ All List</button>
+      <button class="nav-item" data-page="Popular">☆ Popular</button>
+      <button class="nav-item" data-page="New Post">＋ New Post</button>
+      <button class="nav-item" data-page="Profile">♙ Profile</button>
+      <button class="nav-item" data-page="Settings">⚙ Settings</button>
+      <button class="nav-item" data-page="Sign in">⇥ Sign in</button>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="mini-avatar" id="sideAvatar">G</div>
+      <div><strong id="sideName">Guest User</strong><small id="sideStatus">Local demo</small></div>
+      <button class="dots" id="accountMenu">•••</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <button class="icon-button mobile-only" id="menuToggle">☰</button>
+      <div class="mobile-brand">DView</div>
+      <label class="searchbox">
+        <span>⌕</span>
+        <input id="searchInput" placeholder="Search posts, people, topics...">
+        <kbd>/</kbd>
+      </label>
+      <button class="icon-button notification" id="noticeBtn">♧</button>
+      <button class="user-button" id="topProfile">
+        <span class="mini-avatar">G</span><span id="topName">Guest</span>⌄
+      </button>
+    </header>
+
+    <div class="page-wrap">
+      <div class="page-heading">
+        <div>
+          <p class="eyebrow" id="eyebrow">YOUR COMMUNITY</p>
+          <h1 id="pageTitle">Home</h1>
+          <p class="subheading" id="pageSubtitle">Discover ideas, stories and people worth following.</p>
+        </div>
+        <button class="primary-button" data-page="New Post">＋ Create post</button>
+      </div>
+
+      <section id="homePage" class="page-section">
+        <div class="hero">
+          <div class="hero-copy">
+            <span class="hero-pill">✦ YOUR SPACE TO SHARE</span>
+            <h2>Every story<br>starts <em>somewhere.</em></h2>
+            <p>Share your moments, discover fresh ideas, and connect with a community that inspires you.</p>
+            <button class="hero-button" data-page="New Post">Create your first post →</button>
+          </div>
+          <div class="hero-art">
+            <div class="art-circle circle-one"></div>
+            <div class="art-circle circle-two"></div>
+            <div class="art-card card-back">✦<br><small>GOOD IDEAS<br>LIVE HERE</small></div>
+            <div class="art-card card-front"><span>✺</span><strong>Make it<br>meaningful.</strong><small>Share • Discover • Connect</small></div>
+          </div>
+        </div>
+
+        <div class="quick-grid">
+          <button class="quick-card" data-page="All List"><span class="quick-icon blue">☷</span><span><strong>All posts</strong><small>Explore everything</small></span><b>→</b></button>
+          <button class="quick-card" data-page="Popular"><span class="quick-icon yellow">☆</span><span><strong>Popular</strong><small>What people love</small></span><b>→</b></button>
+          <button class="quick-card" data-page="New Post"><span class="quick-icon pink">＋</span><span><strong>New post</strong><small>Share an idea</small></span><b>→</b></button>
+        </div>
+
+        <div class="section-heading">
+          <div><p class="eyebrow">HAND-PICKED FOR YOU</p><h2>Popular posts ✦</h2></div>
+          <button class="text-button" data-page="Popular">See all →</button>
+        </div>
+        <div class="post-grid" id="popularPosts"></div>
+
+        <div class="section-heading">
+          <div><p class="eyebrow">FRESH FROM THE COMMUNITY</p><h2>Latest posts</h2></div>
+          <button class="text-button" data-page="All List">View all →</button>
+        </div>
+        <div class="post-list" id="latestPosts"></div>
+      </section>
+
+      <section id="listPage" class="page-section" hidden>
+        <div class="filter-row">
+          <button class="filter-chip active" data-filter="all">All posts</button>
+          <button class="filter-chip" data-filter="photos">With photos</button>
+          <button class="filter-chip" data-filter="popular">Popular</button>
+          <select id="sortSelect"><option value="new">Newest first</option><option value="likes">Most liked</option></select>
+        </div>
+        <div class="post-list" id="allPosts"></div>
+        <div class="empty-state" id="emptyPosts" hidden>
+          <span>☁</span><h3>No posts found</h3>
+          <p>Try another search or create a new post.</p>
+          <button class="primary-button" data-page="New Post">Create post</button>
+        </div>
+      </section>
+
+      <section id="popularPage" class="page-section" hidden>
+        <div class="notice-banner">✦ Posts from the community</div>
+        <div class="post-list" id="popularList"></div>
+      </section>
+
+      <section id="profilePage" class="page-section" hidden>
+        <div class="profile-cover"><div class="profile-avatar" id="profileAvatar">G</div></div>
+        <div class="profile-details">
+          <div><h2 id="profileName">Guest User</h2><p id="profileBio">Sharing ideas and everyday moments.</p></div>
+          <button class="outline-button" id="editProfileBtn">Edit profile</button>
+        </div>
+        <div class="stats-grid">
+          <div><strong id="statPosts">0</strong><span>Posts</span></div>
+          <div><strong id="statLikes">0</strong><span>Likes received</span></div>
+          <div><strong id="statTopics">0</strong><span>Topics</span></div>
+        </div>
+        <div class="section-heading"><h2>Your posts</h2></div>
+        <div class="post-list" id="myPosts"></div>
+      </section>
+
+      <section id="settingsPage" class="page-section" hidden>
+        <div class="settings-card">
+          <p class="eyebrow">PERSONALIZE</p><h2>Settings</h2>
+          <p class="muted">Customize your DView experience.</p>
+          <label class="setting-row"><span><strong>Dark appearance</strong><small>Switch to a darker theme.</small></span><input type="checkbox" id="darkToggle"></label>
+          <label>Display name<input id="settingsName" class="field" maxlength="40"></label>
+          <label>About you<textarea id="settingsBio" class="field" rows="3" maxlength="180"></textarea></label>
+          <div class="settings-actions">
+            <button class="primary-button" id="saveSettings">Save settings</button>
+            <button class="outline-button danger" id="clearLocal">Reset demo data</button>
+          </div>
+          <p class="small-note">Demo data is stored in this browser only.</p>
+        </div>
+      </section>
+
+      <section id="newPage" class="page-section" hidden>
+        <div class="composer-card">
+          <div class="composer-top">
+            <span class="profile-avatar small-avatar" id="composerAvatar">G</span>
+            <div><strong id="composerName">Guest User</strong><small>Share with the community</small></div>
+          </div>
+          <form id="postForm">
+            <label for="postTitle">Post title</label>
+            <input id="postTitle" class="field" maxlength="100" required placeholder="Give your post a title">
+            <label for="postBody">What's on your mind?</label>
+            <textarea id="postBody" class="field" rows="5" maxlength="1500" required placeholder="Write your story or idea..."></textarea>
+            <div class="two-fields">
+              <div><label for="postTopic">Topic</label><select id="postTopic" class="field"><option>Nature</option><option>Travel</option><option>Photography</option><option>Lifestyle</option><option>Technology</option><option>Education</option><option>Other</option></select></div>
+              <div><label for="postImage">Image URL</label><input id="postImage" class="field" type="url" placeholder="https://example.com/photo.jpg"></div>
+            </div>
+            <div class="composer-footer"><span class="muted">Share responsibly.</span><button class="primary-button" type="submit">Publish post ↗</button></div>
+          </form>
+        </div>
+      </section>
+
+      <section id="authPage" class="page-section" hidden>
+        <div class="settings-card auth-card">
+          <p class="eyebrow">ACCOUNT</p><h2>Sign in / Create account</h2>
+          <p class="muted">Demo profile only. Real authentication requires a backend.</p>
+          <label for="guestName">Display name</label><input class="field" id="guestName" maxlength="40" placeholder="Enter your name">
+          <label for="guestBio">Short bio</label><textarea class="field" id="guestBio" rows="3" maxlength="180"></textarea>
+          <button class="primary-button" id="continueGuest">Continue in demo mode</button>
+        </div>
+      </section>
+
+      <footer class="footer"><span>© 2026 DView</span><span>Made for sharing good ideas.</span></footer>
+    </div>
+
+    <nav class="bottom-nav">
+      <button class="active" data-page="Home"><span>⌂</span>Home</button>
+      <button data-page="All List"><span>☷</span>All List</button>
+      <button data-page="Popular"><span>☆</span>Popular</button>
+      <button data-page="New Post"><span>＋</span>New Post</button>
+      <button data-page="Profile"><span>♙</span>Profile</button>
+    </nav>
+  </main>
+
+  <dialog id="editDialog" class="dialog">
+    <form id="editForm">
+      <button type="button" class="dialog-close" id="closeEdit">×</button>
+      <p class="eyebrow">YOUR PROFILE</p><h2>Edit profile</h2>
+      <label for="editName">Display name</label><input class="field" id="editName" maxlength="40" required>
+      <label for="editBio">About you</label><textarea class="field" id="editBio" rows="3" maxlength="180"></textarea>
+      <button class="primary-button full-width" type="submit">Save profile</button>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
